@@ -5,6 +5,7 @@ const coin = document.getElementById("coin");
 const superCoin = document.getElementById("superCoin");
 const scoreElement = document.getElementById("points");
 const gameoverSound = document.getElementById("gameover");
+const superCoinSound = document.getElementById("superCoinSound");
 let score = 0;
 const startScreen = document.getElementById("startScreen");
 const startButton = document.getElementById("startknap");
@@ -25,35 +26,15 @@ function stopBackgroundMusic() {
 startButton.addEventListener("click", function () {
   startScreen.style.display = "none"; // fjerner start skærm overlay
   playBackgroundMusic(); // Starter musikken når spillet begynder
-  // Start spawning super coins periodically (every 20s)
+  // undersøg dette nærmere, dog ved jeg det er til super coin og det starter en interval hver 20s
   if (!superCoinInterval) {
-    // spawn first one after 8s to give player time
+    // tilføjer den første efter 8s for at give spilleren tid
     setTimeout(() => spawnSuperCoin(5000), 8000);
     superCoinInterval = setInterval(() => spawnSuperCoin(5000), 20000);
   }
 });
 
 dodger.style.backgroundImage = "url('img/pacman.png')";
-
-// Ensure dodger has an explicit inline left/bottom set (read from computed style)
-// This prevents parseInt on an empty string (which becomes NaN) when the player moves
-;(function ensureInitialPosition() {
-  const comp = window.getComputedStyle(dodger);
-  if (!dodger.style.left || dodger.style.left === "") {
-    dodger.style.left = comp.left || "180px";
-  }
-  if (!dodger.style.bottom || dodger.style.bottom === "") {
-    // computed bottom might be returned as 'auto' in some browsers, fallback to 180px
-    dodger.style.bottom = comp.bottom && comp.bottom !== "auto" ? comp.bottom : "180px";
-  }
-})();
-
-// Helper to read computed px value safely
-function getStylePx(el, prop) {
-  const val = window.getComputedStyle(el)[prop];
-  const n = parseInt(val, 10);
-  return Number.isNaN(n) ? 0 : n;
-}
 
 // Funktion til at tjekke kollision med forhindringer
 function checkStructureCollision() {
@@ -86,19 +67,20 @@ function checkCollision() {
     return;
   }
 
+  //undersøg også dette
   if (
     dodgerRect.left < coinRect.right &&
     dodgerRect.right > coinRect.left &&
     dodgerRect.top < coinRect.bottom &&
     dodgerRect.bottom > coinRect.top
   ) {
-    // Collision detected!
+    // Collision opfanget!
     score += 10;
     scoreElement.textContent = score;
-    playCoinSound(); // Afspil lyd når mønten fanges
+    playCoinSound(); 
     // Vis lille +10 notifikation ved coin-position
     try {
-      const gameEl = document.getElementById("game");
+      const gameEl = document.getElementById("game"); 
       const notif = document.createElement("span");
       notif.className = "pickup-notif small";
       notif.textContent = "+10";
@@ -127,10 +109,19 @@ function checkCollision() {
       dodgerRect.top < superRect.bottom &&
       dodgerRect.bottom > superRect.top
     ) {
-      // Grant big bonus
-      score += 50; // ekstra points
+      
+      score += 50; // ekstra point ved super coin
       scoreElement.textContent = score;
-      playCoinSound();
+      try {
+        if (superCoinSound) {
+          superCoinSound.currentTime = 0;
+          superCoinSound.play();
+        } else {
+          playCoinSound();
+        }
+      } catch (e) {
+        // ignore play errors (e.g., not allowed before user gesture)
+      }
       // show visual notification near the super coin
       try {
         const gameEl = document.getElementById("game");
@@ -304,7 +295,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 function moveDodgerLeft() {
-  const left = getStylePx(dodger, 'left');
+  const left = parseInt(dodger.style.left.replace("px", ""), 10);
   if (left > 0) {
     dodger.style.left = `${left - 5}px`;
     dodger.style.transform = "scaleX(-1)";
@@ -316,7 +307,7 @@ function moveDodgerLeft() {
 }
 
 function moveDodgerRight() {
-  const left = getStylePx(dodger, 'left');
+  const left = parseInt(dodger.style.left.replace("px", ""), 10);
   if (left < 360) {
     dodger.style.left = `${left + 5}px`;
     dodger.style.transform = "scaleX(1)";
@@ -328,7 +319,7 @@ function moveDodgerRight() {
 }
 
 function moveDodgerUp() {
-  const bottom = getStylePx(dodger, 'bottom');
+  const bottom = parseInt(dodger.style.bottom.replace("px", ""), 10);
   if (bottom < 380) {
     dodger.style.bottom = `${bottom + 5}px`;
     dodger.style.transform = "rotate(-90deg)"; // Roter Pacman så den kigger opad
@@ -340,7 +331,7 @@ function moveDodgerUp() {
 }
 
 function moveDodgerDown() {
-  const bottom = getStylePx(dodger, 'bottom');
+  const bottom = parseInt(dodger.style.bottom.replace("px", ""), 10);
   if (bottom > 0) {
     dodger.style.bottom = `${bottom - 5}px`;
     dodger.style.transform = "rotate(90deg)";

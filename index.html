@@ -8,11 +8,13 @@
     <link rel="stylesheet" type="text/css" href="index.css" />
   </head>
   <body>
+    <!-- Start skærm  -->
     <div id="startScreen">
       <h1>Sebbi's pacman spil</h1>
       <button id="startknap">Start Spil</button>
     </div>
 
+    <!--Alt lyd der bruges-->
     <audio id="movement">
       <source src="audio/movement_sound.m4a" type="audio/mp4" />
     </audio>
@@ -25,13 +27,19 @@
       <source src="audio/coinsound.mp3" type="audio/mp3" />
     </audio>
 
+    <audio id="superCoinSound">
+      <source src="audio/supercoinsound.mp3" type="audio/mp3" />
+    </audio>
+
     <audio id="backgroundMusic" loop>
       <source src="audio/baggrundlyd.mp3" type="audio/mp3" />
     </audio>
 
+    <!-- en container rundt om spillet for bedre visuelt fokus -->
     <div class="game-container">
       <h1 class="game-title">Sebbes PACMAN</h1>
 
+      <!-- Alt spil indhold og spilet i sin helhedd -->
       <div id="game">
         <div id="score">Score: <span id="points">0</span></div>
         <div id="dodger"></div>
@@ -42,16 +50,17 @@
         <div class="structure" id="wall3"></div>
       </div>
 
+      <!-- lille info boks til kontroller -->
       <div class="controls-info">
         <p>Brug piletasterne for at styre Pacman</p>
         <p>Undgå væggene og saml mønterne!</p>
       </div>
     </div>
-
     <div class="footer">
       <p>Lavet af Sebastian © 2025</p>
     </div>
 
+    <!-- game over skærm når man dør -->
     <div id="gameOverScreen" style="display: none">
       <h1>Game Over!</h1>
       <p>Din score: <span id="finalScore">0</span></p>
