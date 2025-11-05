@@ -1,6 +1,10 @@
 #dodger {
-  background-color: white;
-  height: 20px;
+  background-image: url(img/pacman.png);
+  /* ensure the image is scaled and visible inside the dodger element */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
   position: absolute;
   width: 40px;
 }
@@ -53,5 +57,3 @@
   position: absolute;
   width: 9px;
 }
-
-
