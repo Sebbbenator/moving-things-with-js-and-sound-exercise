@@ -193,6 +193,99 @@
   left: 100px;
 }
 
+/* Super coin (midlertidig, giver flere points) */
+#superCoin {
+  background-image: url("img/frankklam.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 48px;
+  width: 48px;
+  position: absolute;
+  display: none; /* hidden until spawned */
+  z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+  transform-origin: center;
+}
+
+/* Appear animation for super coin */
+@keyframes superAppear {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.super-visible {
+  display: block;
+  animation: superAppear 400ms ease-out;
+}
+
+/* small pulse while visible */
+@keyframes superPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.super-visible {
+  animation: superAppear 400ms ease-out, superPulse 1.5s ease-in-out infinite;
+}
+
+/* Pickup notification (floating +50) */
+.pickup-notif {
+  position: absolute;
+  color: #ffd700;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.9);
+  transform: translateY(0);
+  animation: pickupFloat 1s ease-out forwards;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes pickupFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-30px) scale(1.12);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1);
+  }
+}
+
+.pickup-notif.fade-out {
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+/* smaller variant for normal coin +10 */
+.pickup-notif.small {
+  font-size: 1rem;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.85);
+}
+
 /* Global styles og reset */
 * {
   margin: 0;
