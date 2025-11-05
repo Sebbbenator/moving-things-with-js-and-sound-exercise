@@ -11,7 +11,7 @@ const backgroundMusic = document.getElementById("backgroundMusic");
 
 // Funktion til at starte baggrundsmusik
 function playBackgroundMusic() {
-  backgroundMusic.volume = 0.2; 
+  backgroundMusic.volume = 0.2;
   backgroundMusic.play();
 }
 
@@ -28,10 +28,35 @@ startButton.addEventListener("click", function () {
 
 dodger.style.backgroundImage = "url('img/pacman.png')";
 
+// Funktion til at tjekke kollision med forhindringer
+function checkStructureCollision() {
+  const dodgerRect = dodger.getBoundingClientRect();
+  const structures = document.getElementsByClassName("structure");
+
+  for (let structure of structures) {
+    const structureRect = structure.getBoundingClientRect();
+    if (
+      dodgerRect.left < structureRect.right &&
+      dodgerRect.right > structureRect.left &&
+      dodgerRect.top < structureRect.bottom &&
+      dodgerRect.bottom > structureRect.top
+    ) {
+      return true; // Kollision med forhindring
+    }
+  }
+  return false;
+}
+
 // Funktion til at tjekke om Pacman har fanget coin'en
 function checkCollision() {
   const dodgerRect = dodger.getBoundingClientRect();
   const coinRect = coin.getBoundingClientRect();
+
+  // Tjek først for kollision med forhindringer
+  if (checkStructureCollision()) {
+    showGameOver();
+    return;
+  }
 
   if (
     dodgerRect.left < coinRect.right &&

@@ -77,6 +77,47 @@
   height: 40px;
   width: 40px;
   position: absolute;
+  bottom: 100px;
+  left: 100px;
+}
+
+#dodger {
+  background-image: url(img/pacman.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  bottom: 180px;
+  left: 180px;
+}
+
+.structure {
+  position: absolute;
+  background-color: #444;
+  border: 2px solid #666;
+}
+
+#wall1 {
+  width: 20px;
+  height: 150px;
+  left: 50px;
+  top: 20px;
+}
+
+#wall2 {
+  width: 150px;
+  height: 20px;
+  right: 20px;
+  top: 100px;
+}
+
+#wall3 {
+  width: 20px;
+  height: 120px;
+  right: 80px;
+  bottom: 20px;
 }
 
 .rock {
