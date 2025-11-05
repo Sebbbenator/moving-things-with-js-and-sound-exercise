@@ -19,12 +19,23 @@
   width: 400px;
 }
 
-#start {
+#score {
   color: white;
-  font-size: 4rem;
-  position: relative;
-  text-decoration: none;
-  top: 4rem;
+  font-size: 2rem;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+}
+
+#coin {
+  background-image: url("img/selveste.jpeg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+  width: 40px;
+  position: absolute;
 }
 
 .rock {
