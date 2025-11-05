@@ -5,6 +5,26 @@ const coin = document.getElementById("coin");
 const scoreElement = document.getElementById("points");
 const gameoverSound = document.getElementById("gameover");
 let score = 0;
+const startScreen = document.getElementById("startScreen");
+const startButton = document.getElementById("startknap");
+const backgroundMusic = document.getElementById("backgroundMusic");
+
+// Funktion til at starte baggrundsmusik
+function playBackgroundMusic() {
+  backgroundMusic.volume = 0.2; 
+  backgroundMusic.play();
+}
+
+// Funktion til at stoppe baggrundsmusik
+function stopBackgroundMusic() {
+  backgroundMusic.pause();
+  backgroundMusic.currentTime = 0;
+}
+
+startButton.addEventListener("click", function () {
+  startScreen.style.display = "none"; // fjerner start skærm overlay
+  playBackgroundMusic(); // Starter musikken når spillet begynder
+});
 
 dodger.style.backgroundImage = "url('img/pacman.png')";
 
@@ -22,6 +42,7 @@ function checkCollision() {
     // Collision detected!
     score += 10;
     scoreElement.textContent = score;
+    playCoinSound(); // Afspil lyd når mønten fanges
     moveCoinToNewPosition();
   }
 }
@@ -49,6 +70,34 @@ function playGameOverSound() {
   gameoverSound.play();
 }
 
+function showGameOver() {
+  const gameOverScreen = document.getElementById("gameOverScreen");
+  const finalScoreElement = document.getElementById("finalScore");
+  finalScoreElement.textContent = score;
+  gameOverScreen.style.display = "flex";
+  playGameOverSound();
+  stopBackgroundMusic(); // Stopper musikken ved game over
+}
+
+function resetGame() {
+  score = 0;
+  scoreElement.textContent = "0";
+  dodger.style.bottom = "180px";
+  dodger.style.left = "180px";
+  moveCoinToNewPosition();
+  document.getElementById("gameOverScreen").style.display = "none";
+  playBackgroundMusic(); // Starter musikken igen når spillet genstartes
+}
+
+// Tilføj event listener til restart knappen
+document.getElementById("restartButton").addEventListener("click", resetGame);
+// Function to play coin sound
+function playCoinSound() {
+  const coinSound = document.getElementById("coinSound");
+  coinSound.currentTime = 0;
+  coinSound.play();
+}
+
 document.addEventListener("keydown", function (event) {
   if (event.key === "ArrowLeft") moveDodgerLeft();
   if (event.key === "ArrowRight") moveDodgerRight();
@@ -60,11 +109,11 @@ function moveDodgerLeft() {
   const left = parseInt(dodger.style.left.replace("px", ""), 10);
   if (left > 0) {
     dodger.style.left = `${left - 5}px`;
-    dodger.style.transform = "scaleX(-1)"; 
+    dodger.style.transform = "scaleX(-1)";
     playMovement();
     checkCollision(); // Tjek om vi har fanget coin'en
   } else {
-    playGameOverSound();
+    showGameOver();
   }
 }
 
@@ -72,11 +121,11 @@ function moveDodgerRight() {
   const left = parseInt(dodger.style.left.replace("px", ""), 10);
   if (left < 360) {
     dodger.style.left = `${left + 5}px`;
-    dodger.style.transform = "scaleX(1)"; 
+    dodger.style.transform = "scaleX(1)";
     playMovement();
     checkCollision(); // Tjek om vi har fanget coin'en
   } else {
-    playGameOverSound();
+    showGameOver();
   }
 }
 
@@ -88,7 +137,7 @@ function moveDodgerUp() {
     playMovement();
     checkCollision(); // Tjek om vi har fanget coin'en
   } else {
-    playGameOverSound();
+    showGameOver();
   }
 }
 
@@ -96,10 +145,10 @@ function moveDodgerDown() {
   const bottom = parseInt(dodger.style.bottom.replace("px", ""), 10);
   if (bottom > 0) {
     dodger.style.bottom = `${bottom - 5}px`;
-    dodger.style.transform = "rotate(90deg)"; 
+    dodger.style.transform = "rotate(90deg)";
     playMovement();
     checkCollision(); // Tjek om vi har fanget coin'en
   } else {
-    playGameOverSound();
+    showGameOver();
   }
 }

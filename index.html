@@ -8,6 +8,11 @@
     <link rel="stylesheet" type="text/css" href="index.css" />
   </head>
   <body>
+    <div id="startScreen">
+      <h1>Sebbi's pacman spil</h1>
+      <button id="startknap">Start Spil</button>
+    </div>
+
     <audio id="movement">
       <source src="audio/movement_sound.m4a" type="audio/mp4" />
     </audio>
@@ -16,10 +21,24 @@
       <source src="audio/gameover_sound.m4a" type="audio/mp4" />
     </audio>
 
+    <audio id="coinSound">
+      <source src="audio/coinsound.mp3" type="audio/mp3" />
+    </audio>
+
+    <audio id="backgroundMusic" loop>
+      <source src="audio/baggrundlyd.mp3" type="audio/mp3" />
+    </audio>
+
     <div id="game">
       <div id="score">Score: <span id="points">0</span></div>
       <div id="dodger" style="bottom: 180px; left: 180px"></div>
       <div id="coin" style="bottom: 100px; left: 100px"></div>
+    </div>
+
+    <div id="gameOverScreen" style="display: none">
+      <h1>Game Over!</h1>
+      <p>Din score: <span id="finalScore">0</span></p>
+      <button id="restartButton">Spil igen</button>
     </div>
 
     <script type="text/javascript" src="index.js"></script>

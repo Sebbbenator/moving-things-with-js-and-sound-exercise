@@ -28,6 +28,47 @@
   z-index: 1;
 }
 
+#gameOverScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 100;
+}
+
+#gameOverScreen h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: red;
+}
+
+#gameOverScreen p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+#restartButton {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#restartButton:hover {
+  background-color: #45a049;
+}
+
 #coin {
   background-image: url("img/selveste.jpeg");
   background-size: contain;
@@ -67,4 +108,30 @@
   left: 0;
   position: absolute;
   width: 9px;
+}
+
+#startScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: darkolivegreen;
+  color: lime;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#startknap {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
