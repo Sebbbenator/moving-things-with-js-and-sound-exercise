@@ -33,6 +33,8 @@ function checkStructureCollision() {
   const dodgerRect = dodger.getBoundingClientRect();
   const structures = document.getElementsByClassName("structure");
 
+
+  // Undersøg denne struktor for kollision (hvad betyder det og hvad gør det præcist)
   for (let structure of structures) {
     const structureRect = structure.getBoundingClientRect();
     if (
