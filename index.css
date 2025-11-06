@@ -7,7 +7,6 @@
   position: absolute;
   width: 40px;
 }
-
 #game {
   background: linear-gradient(to bottom, #000033, #000066);
   height: 400px;
@@ -21,7 +20,6 @@
   border: 2px solid #0066cc;
   animation: borderGlow 4s infinite alternate;
 }
-
 @keyframes borderGlow {
   from {
     box-shadow: 0 0 30px rgba(0, 0, 255, 0.2),
@@ -32,7 +30,6 @@
       inset 0 0 60px rgba(0, 0, 255, 0.2);
   }
 }
-
 #score {
   color: #ffd700;
   font-size: 2rem;
@@ -46,22 +43,17 @@
   padding: 10px 20px;
   border-radius: 25px;
   border: 1px solid rgba(255, 215, 0, 0.3);
-}
-
-/* Styling af væggene */
+} /* Styling af væggene */
 .structure {
   background: linear-gradient(45deg, #1a1a1a, #333);
   border: 2px solid #444;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
 }
-
 .structure:hover {
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
   border-color: #666;
-}
-
-/* Tilføj en baggrundseffekt */
+} /* Tilføj en baggrundseffekt */
 #game::before {
   content: "";
   position: absolute;
@@ -75,13 +67,10 @@
     rgba(0, 0, 0, 0.3) 100%
   );
   pointer-events: none;
-}
-
-/* Coin animation */
+} /* Coin animation */
 #coin {
   animation: floating 3s ease-in-out infinite;
 }
-
 @keyframes floating {
   0% {
     transform: translateY(0px);
@@ -93,7 +82,6 @@
     transform: translateY(0px);
   }
 }
-
 #gameOverScreen {
   position: fixed;
   top: 0;
@@ -110,7 +98,6 @@
   font-family: "Arial", sans-serif;
   text-align: center;
 }
-
 #gameOverScreen h1 {
   font-size: 4rem;
   margin-bottom: 30px;
@@ -120,7 +107,6 @@
   text-shadow: 0 0 10px rgba(255, 51, 51, 0.7);
   animation: gameOverGlow 1.5s ease-in-out infinite alternate;
 }
-
 @keyframes gameOverGlow {
   from {
     text-shadow: 0 0 10px rgba(255, 51, 51, 0.7);
@@ -130,14 +116,12 @@
       0 0 30px rgba(255, 51, 51, 0.7), 0 0 40px rgba(255, 51, 51, 0.5);
   }
 }
-
 #gameOverScreen p {
   font-size: 2rem;
   margin-bottom: 40px;
   color: #fff;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
-
 #finalScore {
   font-size: 3rem;
   color: #ffd700;
@@ -146,7 +130,6 @@
   display: inline-block;
   animation: scorePopup 0.5s ease-out;
 }
-
 @keyframes scorePopup {
   0% {
     transform: scale(0);
@@ -160,7 +143,6 @@
     opacity: 1;
   }
 }
-
 #restartButton {
   padding: 15px 40px;
   font-size: 1.4rem;
@@ -174,13 +156,11 @@
   letter-spacing: 2px;
   box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
 }
-
 #restartButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 51, 51, 0.4);
   background: linear-gradient(45deg, #ff5555 30%, #ff3333 90%);
 }
-
 #coin {
   background-image: url("img/selveste.jpeg");
   background-size: contain;
@@ -191,9 +171,7 @@
   position: absolute;
   bottom: 100px;
   left: 100px;
-}
-
-/* Super coin (midlertidig, giver flere points) */
+} /* Super coin (midlertidig, giver flere points) */
 #superCoin {
   background-image: url("img/frankklam.gif");
   background-size: contain;
@@ -206,9 +184,7 @@
   z-index: 2;
   filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
   transform-origin: center;
-}
-
-/* Appear animation for super coin */
+} /* Appear animation for super coin */
 @keyframes superAppear {
   0% {
     transform: scale(0.3);
@@ -223,13 +199,10 @@
     opacity: 1;
   }
 }
-
 .super-visible {
   display: block;
   animation: superAppear 400ms ease-out;
-}
-
-/* small pulse while visible */
+} /* small pulse while visible */
 @keyframes superPulse {
   0% {
     transform: scale(1);
@@ -241,12 +214,9 @@
     transform: scale(1);
   }
 }
-
 .super-visible {
   animation: superAppear 400ms ease-out, superPulse 1.5s ease-in-out infinite;
-}
-
-/* Pickup notification (floating +50) */
+} /* Pickup notification (floating +50) */
 .pickup-notif {
   position: absolute;
   color: #ffd700;
@@ -258,7 +228,6 @@
   pointer-events: none;
   z-index: 5;
 }
-
 @keyframes pickupFloat {
   0% {
     opacity: 1;
@@ -273,26 +242,20 @@
     transform: translateY(-50px) scale(1);
   }
 }
-
 .pickup-notif.fade-out {
   opacity: 0;
   transition: opacity 200ms ease-out;
-}
-
-/* smaller variant for normal coin +10 */
+} /* smaller variant for normal coin +10 */
 .pickup-notif.small {
   font-size: 1rem;
   color: #ffffff;
   text-shadow: 0 0 6px rgba(255, 255, 255, 0.85);
-}
-
-/* Global styles og reset */
+} /* Global styles og reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   min-height: 100vh;
   background: linear-gradient(135deg, #000428 0%, #004e92 100%);
@@ -305,9 +268,7 @@ body {
   color: white;
   position: relative;
   overflow: hidden;
-}
-
-/* Animated background particles */
+} /* Animated background particles med sådn stjerne lookin shit i baggrund */
 body::before {
   content: "";
   position: fixed;
@@ -329,7 +290,6 @@ body::before {
   animation: starfield 20s linear infinite;
   z-index: -1;
 }
-
 @keyframes starfield {
   from {
     transform: translateY(0);
@@ -337,9 +297,7 @@ body::before {
   to {
     transform: translateY(100%);
   }
-}
-
-/* Game container */
+} /* Game container */
 .game-container {
   background: rgba(0, 0, 0, 0.4);
   padding: 30px;
@@ -348,9 +306,7 @@ body::before {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   margin: 20px auto;
-}
-
-/* Game title */
+} /* Game title */
 .game-title {
   font-size: 2.5rem;
   color: #fff;
@@ -359,9 +315,7 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 3px;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-/* Controls info */
+} /* Controls info */
 .controls-info {
   text-align: center;
   margin-top: 20px;
@@ -371,19 +325,15 @@ body::before {
   font-size: 0.9rem;
   line-height: 1.5;
 }
-
 .controls-info p {
   margin: 5px 0;
-}
-
-/* Footer */
+} /* Footer */
 .footer {
   margin-top: 20px;
   text-align: center;
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.7);
 }
-
 #dodger {
   background-image: url(img/pacman.png);
   background-size: contain;
@@ -395,41 +345,35 @@ body::before {
   bottom: 180px;
   left: 180px;
 }
-
 .structure {
   position: absolute;
   background-color: #444;
   border: 2px solid #666;
-}
-
+} /* små forhindre */
 #wall1 {
   width: 20px;
   height: 150px;
   left: 50px;
   top: 20px;
 }
-
 #wall2 {
   width: 150px;
   height: 20px;
   right: 20px;
   top: 100px;
 }
-
 #wall3 {
   width: 20px;
   height: 120px;
   right: 80px;
   bottom: 20px;
 }
-
 .rock {
   width: 20px;
   height: 20px;
   background: tan;
   position: absolute;
 }
-
 .rock:before {
   content: "";
   border-bottom: 6px solid tan;
@@ -441,7 +385,6 @@ body::before {
   top: 0;
   width: 9px;
 }
-
 .rock:after {
   content: "";
   border-left: 6px solid #111;
@@ -452,8 +395,7 @@ body::before {
   left: 0;
   position: absolute;
   width: 9px;
-}
-
+} /* skærm inden spil starter */
 #startScreen {
   position: fixed;
   top: 0;
@@ -470,7 +412,6 @@ body::before {
   font-family: "Arial", sans-serif;
   text-align: center;
 }
-
 #startScreen h1 {
   font-size: 3.5rem;
   margin-bottom: 30px;
@@ -480,7 +421,6 @@ body::before {
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
   animation: glow 2s ease-in-out infinite alternate;
 }
-
 @keyframes glow {
   from {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
@@ -490,7 +430,6 @@ body::before {
       0 0 30px rgba(255, 215, 0, 0.6);
   }
 }
-
 #startknap {
   padding: 15px 40px;
   font-size: 1.4rem;
@@ -504,9 +443,10 @@ body::before {
   letter-spacing: 2px;
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
-
 #startknap:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
   background: linear-gradient(45deg, #45a049 30%, #4caf50 90%);
 }
+
+

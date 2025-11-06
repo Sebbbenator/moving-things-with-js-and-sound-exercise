@@ -67,20 +67,20 @@ function checkCollision() {
     return;
   }
 
-  //undersøg også dette
+  //undersøg og
   if (
     dodgerRect.left < coinRect.right &&
     dodgerRect.right > coinRect.left &&
     dodgerRect.top < coinRect.bottom &&
     dodgerRect.bottom > coinRect.top
   ) {
-    // Collision opfanget!
+    // Collision detected!
     score += 10;
     scoreElement.textContent = score;
-    playCoinSound(); 
+    playCoinSound(); // Afspil lyd når mønten fanges
     // Vis lille +10 notifikation ved coin-position
     try {
-      const gameEl = document.getElementById("game"); 
+      const gameEl = document.getElementById("game");
       const notif = document.createElement("span");
       notif.className = "pickup-notif small";
       notif.textContent = "+10";
@@ -109,9 +109,10 @@ function checkCollision() {
       dodgerRect.top < superRect.bottom &&
       dodgerRect.bottom > superRect.top
     ) {
-      
-      score += 50; // ekstra point ved super coin
+      // Grant big bonus
+      score += 50; // ekstra points
       scoreElement.textContent = score;
+      // play specialized super coin sound if available, else fallback to normal coin sound
       try {
         if (superCoinSound) {
           superCoinSound.currentTime = 0;
